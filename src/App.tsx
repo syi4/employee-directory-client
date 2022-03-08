@@ -8,6 +8,7 @@ import { Home } from "./pages/Home";
 import { Details } from "./pages/Details";
 import { Add } from "./pages/Add";
 import { Edit } from "./pages/Edit";
+import { SearchResults } from "./pages/SearchResults";
 
 export const App: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -70,6 +71,7 @@ export const App: React.FC = () => {
           path="/edit-employee/:id"
           element={<Edit employees={employees} setEmployees={setEmployees} />}
         />
+        <Route path="/results/:searchValue" element={<SearchResults />} />
       </Routes>
     </Router>
   );

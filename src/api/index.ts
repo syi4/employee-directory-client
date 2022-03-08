@@ -10,9 +10,13 @@ export const uploadImage = async (file: string) => {
   formData.append("file", file);
   formData.append("upload_preset", "hik8lwg4");
 
+  if (!process.env.REACT_APP_CLOUDINARY_ACCOUNT) {
+    throw new Error("No cloudinary url");
+  }
+
   try {
     const { data } = await api.post(
-      `https://api.cloudinary.com/v1_1/dcsluudl6/upload`,
+      process.env.REACT_APP_CLOUDINARY_ACCOUNT,
       formData
     );
     return data.url;

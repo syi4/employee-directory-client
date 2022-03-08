@@ -15,10 +15,14 @@ interface EditProps {
   setEmployees: React.Dispatch<React.SetStateAction<Employee[]>>;
 }
 
+interface EditPageLocationState {
+  employee: Employee;
+}
+
 export const Edit: React.FC<EditProps> = ({ employees, setEmployees }) => {
   const location = useLocation();
 
-  const { employee }: any = location.state;
+  const { employee } = location.state as EditPageLocationState;
 
   const initialFormValues: Employee = {
     first_name: employee.first_name,
@@ -37,7 +41,7 @@ export const Edit: React.FC<EditProps> = ({ employees, setEmployees }) => {
 
   const handleSubmit = async (values: Employee) => {
     const url = await uploadImage(values.picture);
-    const data = await editEmployee(employee.id, {
+    const data = await editEmployee(employee.id as string, {
       ...values,
       id: employee.id,
       picture: url,
