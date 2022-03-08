@@ -33,7 +33,7 @@ export const Home: React.FC<HomeProps> = ({
   }
 
   return (
-    <Container className="py-5">
+    <Container className="py-4 mt-2">
       {loading && <h1>Loading...</h1>}
       {error && <h1>Error fetching api</h1>}
       {employees && !error && !loading && (
